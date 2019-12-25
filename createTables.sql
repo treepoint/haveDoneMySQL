@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `tasks` (
 #Лог выполнения задач
 CREATE TABLE IF NOT EXISTS `task_log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `task_id` int(11) NOT NULL,
+  `task_id` int(11) NULL,
   `execution_start` DATETIME,
   `execution_end` DATETIME,
   PRIMARY KEY (id),
