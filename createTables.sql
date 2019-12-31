@@ -2,6 +2,7 @@
 DROP TABLE task_log;
 DROP TABLE tasks;
 DROP TABLE task_statuses;
+DROP TABLE task_statuses_types;
 DROP TABLE categories;
 DROP TABLE users;
 DROP TABLE roles;
@@ -34,13 +35,22 @@ CREATE TABLE IF NOT EXISTS `categories` (
   FOREIGN KEY (user_id)  REFERENCES users (id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=UTF8;
 
+#Типы статусов задач
+CREATE TABLE IF NOT EXISTS `task_statuses_types` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(400) NOT NULL,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB  DEFAULT CHARSET=UTF8;
+
 #Статусы задачи
 CREATE TABLE IF NOT EXISTS `task_statuses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
+  `type_id` int(11) NOT NULL,
   `name` varchar(400) NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (user_id)  REFERENCES users (id),
+  FOREIGN KEY (type_id)  REFERENCES task_statuses_types (id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=UTF8;
 
 #Задачи
@@ -51,6 +61,7 @@ CREATE TABLE IF NOT EXISTS `tasks` (
   `status_id` int(11) NOT NULL,
   `name` varchar(400) NOT NULL,
   `description` varchar(4000) NULL,
+  `create_date` DATETIME NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (user_id)  REFERENCES users (id),
   FOREIGN KEY (category_id)  REFERENCES categories (id),
