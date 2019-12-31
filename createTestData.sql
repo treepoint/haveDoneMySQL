@@ -19,10 +19,10 @@ insert into categories (user_id, name, description)
 VALUES (1, "test category", "test category description");
 
 #Статусы_задач
-insert into task_statuses (name) VALUES ("Waiting");
-insert into task_statuses (name) VALUES ("Partially completed");
-insert into task_statuses (name) VALUES ("Сompleted");
-insert into task_statuses (name) VALUES ("Wait for feedback");
+insert into task_statuses (user_id, name) VALUES (1, "Waiting");
+insert into task_statuses (user_id, name) VALUES (1, "Partially completed");
+insert into task_statuses (user_id, name) VALUES (1, "Сompleted");
+insert into task_statuses (user_id, name) VALUES (1, "Wait for feedback");
 
 #Задачи
 insert into tasks (user_id, category_id, status_id, name, description) 

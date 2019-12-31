@@ -37,8 +37,10 @@ CREATE TABLE IF NOT EXISTS `categories` (
 #Статусы задачи
 CREATE TABLE IF NOT EXISTS `task_statuses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
   `name` varchar(400) NOT NULL,
-  PRIMARY KEY (id)
+  PRIMARY KEY (id),
+  FOREIGN KEY (user_id)  REFERENCES users (id),
 ) ENGINE=InnoDB  DEFAULT CHARSET=UTF8;
 
 #Задачи
