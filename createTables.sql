@@ -31,8 +31,10 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `user_id` int(11) NOT NULL,
   `name` varchar(400) NOT NULL,
   `description` varchar(4000) NULL,
+  `create_date` DATETIME NOT NULL,
+  `close_date` DATETIME NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (user_id)  REFERENCES users (id)
+  FOREIGN KEY (user_id)  REFERENCES users (id) ON DELETE CASCADE
 ) ENGINE=InnoDB  DEFAULT CHARSET=UTF8;
 
 #Типы статусов задач
@@ -48,8 +50,10 @@ CREATE TABLE IF NOT EXISTS `task_statuses` (
   `user_id` int(11) NOT NULL,
   `type_id` int(11) NOT NULL,
   `name` varchar(400) NOT NULL,
+  `create_date` DATETIME NOT NULL,
+  `close_date` DATETIME NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (user_id)  REFERENCES users (id),
+  FOREIGN KEY (user_id)  REFERENCES users (id) ON DELETE CASCADE,
   FOREIGN KEY (type_id)  REFERENCES task_statuses_types (id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=UTF8;
 
@@ -63,8 +67,8 @@ CREATE TABLE IF NOT EXISTS `tasks` (
   `description` varchar(4000) NULL,
   `create_date` DATETIME NOT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (user_id)  REFERENCES users (id),
-  FOREIGN KEY (category_id)  REFERENCES categories (id),
+  FOREIGN KEY (user_id)  REFERENCES users (id) ON DELETE CASCADE,
+  FOREIGN KEY (category_id)  REFERENCES categories (id) ON DELETE CASCADE,
   FOREIGN KEY (status_id)  REFERENCES task_statuses (id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=UTF8;
 
@@ -75,5 +79,5 @@ CREATE TABLE IF NOT EXISTS `task_log` (
   `execution_start` DATETIME,
   `execution_end` DATETIME,
   PRIMARY KEY (id),
-  FOREIGN KEY (task_id)  REFERENCES tasks (id)
+  FOREIGN KEY (task_id)  REFERENCES tasks (id) ON DELETE CASCADE
 ) ENGINE=InnoDB  DEFAULT CHARSET=UTF8;
