@@ -66,7 +66,6 @@ CREATE TABLE IF NOT EXISTS `tasks` (
   `name` varchar(400) NOT NULL,
   `name_style` varchar(600) NULL,
   `description` varchar(4000) NULL,
-  `description_style` varchar(600) NULL,
   `create_date` DATETIME NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (user_id)  REFERENCES users (id) ON DELETE CASCADE,
