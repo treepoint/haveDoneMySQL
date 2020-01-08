@@ -69,6 +69,7 @@ CREATE TABLE IF NOT EXISTS `tasks` (
   `name_style` varchar(600) NOT NULL DEFAULT `{}`,
   `description` varchar(4000) NULL,
   `create_date` DATETIME NOT NULL,
+  `update_date` DATETIME NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (user_id)  REFERENCES users (id) ON DELETE CASCADE,
   FOREIGN KEY (category_id)  REFERENCES categories (id) ON DELETE CASCADE,
