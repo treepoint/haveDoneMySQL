@@ -80,6 +80,7 @@ CREATE TABLE IF NOT EXISTS `tasks` (
 CREATE TABLE IF NOT EXISTS `task_log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `task_id` int(11) NULL,
+  `comment` varchar(4000) NULL,
   `execution_start` DATETIME,
   `execution_end` DATETIME,
   PRIMARY KEY (id),
