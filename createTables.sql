@@ -70,6 +70,7 @@ CREATE TABLE IF NOT EXISTS `tasks` (
   `description` varchar(4000) NULL,
   `create_date` DATETIME NOT NULL,
   `update_date` DATETIME NULL,
+  `in_archive` TINYINT NOT NULL DEFAULT 0,
   PRIMARY KEY (id),
   FOREIGN KEY (user_id)  REFERENCES users (id) ON DELETE CASCADE,
   FOREIGN KEY (category_id)  REFERENCES categories (id) ON DELETE CASCADE,
