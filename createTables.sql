@@ -71,6 +71,7 @@ CREATE TABLE IF NOT EXISTS `tasks` (
   `create_date` DATETIME NOT NULL,
   `update_date` DATETIME NULL,
   `in_archive` TINYINT NOT NULL DEFAULT 0,
+  `on_fire` TINYINT NOT NULL DEFAULT 0,
   PRIMARY KEY (id),
   FOREIGN KEY (user_id)  REFERENCES users (id) ON DELETE CASCADE,
   FOREIGN KEY (category_id)  REFERENCES categories (id) ON DELETE CASCADE,
@@ -86,4 +87,13 @@ CREATE TABLE IF NOT EXISTS `task_log` (
   `execution_end` DATETIME,
   PRIMARY KEY (id),
   FOREIGN KEY (task_id)  REFERENCES tasks (id) ON DELETE CASCADE
+) ENGINE=InnoDB  DEFAULT CHARSET=UTF8;
+
+#Пользовательские настройки
+CREATE TABLE IF NOT EXISTS `user_settings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL UNIQUE,
+  `tasks_wallpaper` LONGTEXT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (user_id)  REFERENCES users (id) ON DELETE CASCADE
 ) ENGINE=InnoDB  DEFAULT CHARSET=UTF8;
