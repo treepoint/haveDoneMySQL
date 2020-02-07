@@ -70,6 +70,7 @@ CREATE TABLE IF NOT EXISTS `tasks` (
   `description` varchar(4000) NULL,
   `create_date` DATETIME NOT NULL,
   `update_date` DATETIME NULL,
+  `moved_date` DATETIME NULL,
   `in_archive` TINYINT NOT NULL DEFAULT 0,
   `on_fire` TINYINT NOT NULL DEFAULT 0,
   PRIMARY KEY (id),
