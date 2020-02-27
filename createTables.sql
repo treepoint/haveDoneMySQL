@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `task_log` (
 CREATE TABLE IF NOT EXISTS `user_settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL UNIQUE,
-  `tasks_wallpaper` LONGTEXT NULL,
+  `wallpaper` LONGTEXT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (user_id)  REFERENCES users (id) ON DELETE CASCADE
 ) ENGINE=InnoDB  DEFAULT CHARSET=UTF8;
