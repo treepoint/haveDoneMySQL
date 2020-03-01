@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `task_statuses_types` (
   PRIMARY KEY (id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=UTF8;
 
-#Статусы задачи
+#Статусы задач
 CREATE TABLE IF NOT EXISTS `task_statuses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -66,7 +66,6 @@ CREATE TABLE IF NOT EXISTS `tasks` (
   `category_id` int(11) NOT NULL,
   `status_id` int(11) NOT NULL,
   `name` varchar(400) NOT NULL,
-  `name_style` varchar(600) NOT NULL DEFAULT `{}`,
   `description` varchar(4000) NULL,
   `create_date` DATETIME NOT NULL,
   `update_date` DATETIME NULL,
