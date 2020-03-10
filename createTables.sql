@@ -38,40 +38,19 @@ CREATE TABLE IF NOT EXISTS `categories` (
   FOREIGN KEY (user_id)  REFERENCES users (id) ON DELETE CASCADE
 ) ENGINE=InnoDB  DEFAULT CHARSET=UTF8;
 
-#Типы статусов задач
-CREATE TABLE IF NOT EXISTS `task_statuses_types` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(400) NOT NULL,
-  PRIMARY KEY (id)
-) ENGINE=InnoDB  DEFAULT CHARSET=UTF8;
-
-#Статусы задач
-CREATE TABLE IF NOT EXISTS `task_statuses` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `type_id` int(11) NOT NULL,
-  `name` varchar(400) NOT NULL,
-  `name_style` varchar(600) NOT NULL DEFAULT `{}`,
-  `create_date` DATETIME NOT NULL,
-  `close_date` DATETIME NULL,
-  PRIMARY KEY (id),
-  FOREIGN KEY (user_id)  REFERENCES users (id) ON DELETE CASCADE,
-  FOREIGN KEY (type_id)  REFERENCES task_statuses_types (id)
-) ENGINE=InnoDB  DEFAULT CHARSET=UTF8;
-
 #Задачи
 CREATE TABLE IF NOT EXISTS `tasks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
-  `status_id` int(11) NOT NULL,
   `name` varchar(400) NOT NULL,
   `description` varchar(4000) NULL,
   `create_date` DATETIME NOT NULL,
+  `closed_date` DATETIME NULL,
   `update_date` DATETIME NULL,
   `moved_date` DATETIME NULL,
-  `in_archive` TINYINT NOT NULL DEFAULT 0,
   `on_fire` TINYINT NOT NULL DEFAULT 0,
+  `frozen` TINYINT NOT NULL DEFAULT 0,
   PRIMARY KEY (id),
   FOREIGN KEY (user_id)  REFERENCES users (id) ON DELETE CASCADE,
   FOREIGN KEY (category_id)  REFERENCES categories (id) ON DELETE CASCADE,
