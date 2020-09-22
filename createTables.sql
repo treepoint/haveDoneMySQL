@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `tasks` (
   `user_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
   `name` varchar(400) NOT NULL,
-  `description` varchar(4000) NULL,
+  `description` LONGTEXT NULL,
   `create_date` DATETIME NOT NULL,
   `closed_date` DATETIME NULL,
   `update_date` DATETIME NULL,
