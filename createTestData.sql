@@ -26,7 +26,7 @@ VALUES
     ('owner-of-all-real@ya.ru', 'owner', 1);
 
 #Проекты
-insert into categories
+insert into projects
     (user_id, name, description, create_date)
 VALUES
     (1, "test project", "test project description", "1970-01-01");
@@ -44,9 +44,9 @@ VALUES
     (1, 1, 1, "test task", "test task description", "2019-12-19");
 
 insert into tasks
-    (user_id, category_id, name, description, create_date)
+    (user_id, category_id, project_id, name, description, create_date)
 VALUES
-    (1, 1, "test task 2", "new test task description", "2019-12-20");
+    (1, 1, 1, "test task 2", "new test task description", "2019-12-20");
 
 #Лог задач
 insert into task_log
