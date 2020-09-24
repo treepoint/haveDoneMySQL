@@ -29,8 +29,23 @@ CREATE TABLE IF NOT EXISTS `users` (
 CREATE TABLE IF NOT EXISTS `categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
+  `project_id` int(11) NOT NULL,
   `name` varchar(400) NOT NULL,
-  `name_style` varchar(600) NOT NULL DEFAULT `{}`,
+  `name_style` varchar(600) NOT NULL DEFAULT "{}",
+  `description` varchar(4000) NULL,
+  `create_date` DATETIME NOT NULL,
+  `close_date` DATETIME NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (user_id)  REFERENCES users (id) ON DELETE CASCADE,
+  FOREIGN KEY (project_id)  REFERENCES projects (id) ON DELETE CASCADE
+) ENGINE=InnoDB  DEFAULT CHARSET=UTF8;
+
+#Проекты
+CREATE TABLE IF NOT EXISTS `projects` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `name` varchar(400) NOT NULL,
+  `name_style` varchar(600) NOT NULL DEFAULT "{}",
   `description` varchar(4000) NULL,
   `create_date` DATETIME NOT NULL,
   `close_date` DATETIME NULL,
@@ -43,6 +58,7 @@ CREATE TABLE IF NOT EXISTS `tasks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
+  `project_id` int(11) NOT NULL,
   `name` varchar(400) NOT NULL,
   `description` LONGTEXT NULL,
   `create_date` DATETIME NOT NULL,
@@ -54,6 +70,7 @@ CREATE TABLE IF NOT EXISTS `tasks` (
   PRIMARY KEY (id),
   FOREIGN KEY (user_id)  REFERENCES users (id) ON DELETE CASCADE,
   FOREIGN KEY (category_id)  REFERENCES categories (id) ON DELETE CASCADE,
+  FOREIGN KEY (project_id)  REFERENCES projects (id) ON DELETE CASCADE,
   FOREIGN KEY (status_id)  REFERENCES task_statuses (id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=UTF8;
 
@@ -72,7 +89,9 @@ CREATE TABLE IF NOT EXISTS `task_log` (
 CREATE TABLE IF NOT EXISTS `user_settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL UNIQUE,
+  `current_project_id` int(11) NOT NULL UNIQUE,
   `wallpaper` LONGTEXT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (user_id)  REFERENCES users (id) ON DELETE CASCADE
+  FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
+  FOREIGN KEY (project_id)  REFERENCES projects (id) ON DELETE CASCADE
 ) ENGINE=InnoDB  DEFAULT CHARSET=UTF8;
